@@ -1,4 +1,5 @@
 var request = require('request');
+var util = require('util');
 var config = require('./config');
 var apiUrl = config.apiUrl;
 
@@ -9,11 +10,11 @@ function songs (parameters, cb) {
   if (parameters.by || parameters.prefix) {
     return songsBy(parameters, cb);
   }
-  if (parameters.id) {
-    return songById(parameters.id, cb);
+  if (typeof parameters === 'number') {
+    return songById(parameters, cb);
   }
-  if (parameters.ids) {
-    return songsByIds(parameters.ids, cb);
+  if (util.isArray(parameters)) {
+    return songsByIds(parameters, cb);
   }
   if (parameters.query) {
     return songsBySearch(parameters, cb);
