@@ -46,7 +46,7 @@ if (!module.parent) {
 }
 
 function songs (parameters, cb) {
-  if (parameter.by || parameters.prefix) {
+  if (parameters.by || parameters.prefix) {
     return songsBy(parameters, cb);
   }
   if (parameters.id) {
