@@ -108,5 +108,11 @@ function getStats (cb) {
 module.exports = songs;
 
 if (!module.parent) {
-  songs(console.log)
+  songs(console.log);
+  songs({by:'popularity'},console.log);
+  songs({query:'bowie'},console.log);
+  songs(11750, console.log);
+  songs([11750,57181],console.log);
+  songs('languages', console.log);
+  songs('stats', console.log);
 }
