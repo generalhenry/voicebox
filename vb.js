@@ -121,7 +121,7 @@ function songs (parameters, cb) {
       url: apiUrl + '/songs/search.json',
       qs: parameters
     }, function (error, response, body) {
-      if (errror) {
+      if (error) {
         return cb(error);
       }
       try {
@@ -151,7 +151,7 @@ function songs (parameters, cb) {
     return request({
       url: apiUrl + 'songs/stats.json'
     }, function(error, response, body) {
-      if (errror) {
+      if (error) {
         return cb(error);
       }
       try {
