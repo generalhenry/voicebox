@@ -48,7 +48,7 @@ function songById (id, cb) {
     if (error) {
       return cb(error);
     }
-    return cb(null, body);
+    return cb(null, body.song || body);
   });
 }
 function songsByIds (ids, cb) {
