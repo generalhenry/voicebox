@@ -66,7 +66,7 @@ function songs (parameters, cb) {
   }
   return songsBy({}, cb);
   function songsBy (parameters, cb) {
-    request({
+    return request({
       url: apiUrl + 'songs.json',
       qs: parameters
     }, function (error, response, body) {
@@ -82,7 +82,7 @@ function songs (parameters, cb) {
     });
   }
   function songById (id, cb) {
-    request({
+    return request({
       url: apiUrl + 'songs/' + id + '.json'
     }, function (error, response, body) {
       if (error) {
@@ -96,5 +96,74 @@ function songs (parameters, cb) {
       return cb(null, song);
     });
   }
-  //blah
+  function songsByIds (ids, cb) {
+    var songs = [];
+    return ids.forEach(function (id) {
+      return songById(id, gotSong);
+    });
+    function gotSong (error, song) {
+      if (cb === null) {
+        return false;
+      }
+      if (error) {
+        cb(error);
+        cb = null;
+        return false;
+      }
+      songs.push(song);
+      if (songs.length === ids.length) {
+        return cb(null, songs);
+      }
+    }
+  }
+  function songsBySearch (parameters, cb) {
+    return request({
+      url: apiUrl + '/songs/search.json',
+      qs: parameters
+    }, function (error, response, body) {
+      if (errror) {
+        return cb(error);
+      }
+      try {
+        var songs = JSON.parse(body);
+      } catch (error) {
+        return cb(error);
+      }
+      return cb(null, songs);
+    });
+  }
+  function getLanguages (cb) {
+    return request({
+      url: apiUrl + 'songs/languages.json'
+    }, function (error, response, body) {
+      if (error) {
+        return cb(error);
+      }
+      try {
+        var languages = JSON.parse(body);
+      } catch (error) {
+        return cb(error);
+      }
+      return cb(null, languages);
+    });
+  }
+  function getStats (cb) {
+    return request({
+      url: apiUrl + 'songs/stats.json'
+    }, function(error, response, body) {
+      if (errror) {
+        return cb(error);
+      }
+      try {
+        var stats = JSON.parse(body);
+      } catch (error) {
+        return cb(error);
+      }
+      return cb(null, stats);
+    });
+  }
 }
+
+module.exports = {
+  songs: songs
+};
