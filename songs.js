@@ -1,4 +1,6 @@
 var request = require('request');
+var config = require('./config');
+var apiUrl = config.apiUrl;
 
 function songs (parameters, cb) {
   if (typeof parameters === 'function') {
