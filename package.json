@@ -1,7 +1,13 @@
 {
-  "author": "Henry Allen-Tilford",
+  "author": "Henry Allen-Tilford<htilford@gmail.com>",
+  "description": "voicebox api fun",
   "name": "voicebox",
   "version": "0.2.1",
+  "main": "vb.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/generalhenry/voicebox.git"
+  },
   "dependencies": {
     "request": "~2.9.203",
     "express": "~2.5.11"
@@ -12,7 +18,8 @@
     "node": "0.6.x"
   },
   "subdomain": "voicebox",
+  "license": "MIT",
   "scripts": {
-    "start": "vb.js"
+    "start": "node vb.js"
   }
 }
