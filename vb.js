@@ -94,7 +94,7 @@ function songs (parameters, cb) {
         return cb(error);
       }
       return cb(null, song);
-    }
+    });
   }
   //blah
 }
