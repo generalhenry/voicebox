@@ -7,6 +7,11 @@ function songs (parameters, cb) {
   if (typeof parameters === 'function') {
     return songsBy({}, parameters);
   }
+  if (typeof parameters === 'string') {
+    return songsBySearch({
+      query: parameters
+    }, cb);
+  }
   if (parameters.by || parameters.prefix) {
     return songsBy(parameters, cb);
   }
@@ -107,13 +112,3 @@ function getStats (cb) {
 }
 
 module.exports = songs;
-
-if (!module.parent) {
-  songs(console.log);
-  songs({by:'popularity'},console.log);
-  songs({query:'bowie'},console.log);
-  songs(11750, console.log);
-  songs([11750,57181],console.log);
-  songs('languages', console.log);
-  songs('stats', console.log);
-}
